@@ -8,9 +8,11 @@ namespace AtlasToolbox.Utils
 {
     public class ToolboxUpdateHelper
     {
-        const string RELEASE_URL = "https://api.github.com/repos/atlas-os/atlas-toolbox/releases/latest";
+        const string RELEASE_URL = "https://data.jsdelivr.com/v1/packages/gh/atlas-os/atlas-toolbox";
+        const string DOWNLOAD_URL = $"https://cdn.jsdelivr.net/atlas/toolbox/";
         public static string commandUpdate;
         public static JsonDocument result;
+        public static string version = "";
         public static bool CheckUpdates()
         {
             try
@@ -18,17 +20,19 @@ namespace AtlasToolbox.Utils
                 // get the api result
                 string htmlContent = CommandPromptHelper.ReturnRunCommand("curl " + RELEASE_URL);
                 result = JsonDocument.Parse(htmlContent);
-                string tagName = result.RootElement.GetProperty("tag_name").GetString();
+                JsonElement versions = result.RootElement.GetProperty("versions");
+                version = versions[0].GetProperty("version").ToString();
 
                 // Format everything to compare 
-                int version = int.Parse(RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "Version").ToString().Replace(".", ""));
+                int currentVersion = int.Parse(RegistryHelper.GetValue($@"HKLM\SOFTWARE\AtlasOS\Toolbox", "Version").ToString().Replace(".", ""));
 
-                if (int.Parse(tagName.Replace(".", "").Replace("v", "")) > version)
+                if (int.Parse(version.Replace(".", "").Replace("v", "")) > currentVersion)
                 {
                     return true;
                 }
-            }catch
+            }catch (Exception e)
             {
+                App.logger.Error(e, "Failed to check for updates");
                 return false;
             }
             return false;
@@ -38,7 +42,7 @@ namespace AtlasToolbox.Utils
         {
             // Call the installer and close Toolbox
             // get the download link and create a temporary directory
-            string downloadUrl = result.RootElement.GetProperty("assets")[0].GetProperty("browser_download_url").GetString();
+            string downloadUrl = DOWNLOAD_URL + version + "/AtlasToolbox-Setup.exe";
             string tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             Directory.CreateDirectory(tempDirectory);
 

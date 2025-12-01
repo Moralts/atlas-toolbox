@@ -63,6 +63,19 @@ namespace AtlasToolbox.ViewModels
             }
         }
 
+        public bool CheckPatches()
+        {
+            if (AtlasPatcherHelper.CheckForPatches())
+            {
+                App.ContentDialogCaller("newUpdate");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public bool CheckAtlasOSUpdates()
         {
             if (AtlasPatcherHelper.CheckForPatches())

@@ -108,7 +108,7 @@ namespace AtlasToolbox.Views
             SettingsPageViewModel vm = this.DataContext as SettingsPageViewModel;
             NoUpdatesBar.Visibility = Visibility.Collapsed;
             ProgressRing.Visibility = Visibility.Visible;
-            bool update = await Task.Run(() => vm.());
+            bool update = await Task.Run(() => vm.CheckPatches());
             if (update)
             {
                 ProgressRing.Visibility = Visibility.Collapsed;
@@ -130,6 +130,5 @@ namespace AtlasToolbox.Views
             App.ContentDialogCaller("restartApp");
         }
         #endregion experiments
-
     }
 }

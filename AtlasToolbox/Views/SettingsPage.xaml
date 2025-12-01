@@ -54,7 +54,7 @@
                         </ComboBox>
                     </controls:SettingsCard>
                     <!--  Update settings  -->
-                    <!--Toolbox Updates-->
+                    <!--  Toolbox Updates  -->
                     <controls:SettingsCard x:Name="Update" Style="{StaticResource ConfigurationSettingsCardTemplate}">
                         <controls:SettingsCard.HeaderIcon>
                             <FontIcon Glyph="&#xE895;" />
@@ -75,6 +75,26 @@
                             <Button x:Name="CheckUpdateButton" Click="CheckUpdateButton_Click" />
                         </StackPanel>
                     </controls:SettingsCard>
+                    <controls:SettingsCard x:Name="Patches" Style="{StaticResource ConfigurationSettingsCardTemplate}">
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xE895;" />
+                        </controls:SettingsCard.HeaderIcon>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                x:Name="NoPatchesBar"
+                                Margin="0,0,16,0"
+                                VerticalAlignment="Center"
+                                Visibility="Collapsed" />
+                            <ProgressRing
+                                x:Name="ProgressRingPatches"
+                                Width="20"
+                                Height="20"
+                                Margin="0,0,10,0"
+                                IsActive="True"
+                                Visibility="Collapsed" />
+                            <Button x:Name="CheckPatchesButton" Click="CheckPatchesButton_Click" />
+                        </StackPanel>
+                    </controls:SettingsCard>
                 </StackPanel>
                 <!--  Experiments  -->
                 <StackPanel>
@@ -92,9 +112,7 @@
                                 <controls:SettingsCard.HeaderIcon>
                                     <FontIcon Glyph="&#xE71E;" />
                                 </controls:SettingsCard.HeaderIcon>
-                                <ToggleSwitch
-                                    Loaded="IsExperimentEnabled"
-                                    Tag="Search"/>
+                                <ToggleSwitch Loaded="IsExperimentEnabled" Tag="Search" />
                             </controls:SettingsCard>
                         </controls:SettingsExpander.Items>
                     </controls:SettingsExpander>

@@ -31,14 +31,17 @@ namespace HourglassGameOnWPF.ViewModel
 
 
         // temporary (for testing purposes. Will have a more custom "user selection based" integrity file verifier in the future) 
-        const string PATCH_ATLAS_FOLDER_PATH =  "C:\\Users\\TheyCreeper\\Desktop\\PatchFiles\\AtlasFolder";
-        const string PATCH_ATLAS_MODULES_PATH = "C:\\Users\\TheyCreeper\\Desktop\\PatchFiles\\AtlasModules"; 
+        const string PATCH_ATLAS_FOLDER_PATH = "C:\\Users\\TheyCreeper\\Desktop\\IntegrityTester\\live\\PatchFiles\\AtlasDesktop";
+        const string PATCH_ATLAS_MODULES_PATH = "C:\\Users\\TheyCreeper\\Desktop\\IntegrityTester\\live\\PatchFiles\\AtlasModules"; 
 
         // semi-temporary (path should change, value should still exist)
-        const string ATLAS_FOLDER_PATH = "C:\\Users\\TheyCreeper\\Desktop\\Windows\\AtlasFolder";
-        const string ATLAS_MODULES_PATH = "C:\\Users\\TheyCreeper\\Desktop\\Windows\\AtlasModules";
+        const string ATLAS_FOLDER_PATH = "C:\\Users\\TheyCreeper\\Desktop\\IntegrityTester\\live\\Windows\\AtlasDesktop";
+        const string ATLAS_MODULES_PATH = "C:\\Users\\TheyCreeper\\Desktop\\IntegrityTester\\live\\Windows\\AtlasModules";
 
-        public IntegrityViewModel() { }
+        public IntegrityViewModel() 
+        {
+
+        }
 
 
 
